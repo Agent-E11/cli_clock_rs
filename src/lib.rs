@@ -1,102 +1,98 @@
-pub enum Digit {
-    Zero,
-    One,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-    Seven,
-    Eight,
-    Nine,
+pub trait BlockChar3By5 {
+    fn char_grid(&self) -> [[bool; 3]; 5];
 }
-impl Digit {
-    pub fn display(&self) -> [[bool; 3]; 5] {
-        match self {
-            Self::Zero => [
-                [true, true, true],
-                [true, false, true],
-                [true, false, true],
-                [true, false, true],
-                [true, true, true],
-            ],
-            Self::One => [
-                [false, false, true],
-                [false, false, true],
-                [false, false, true],
-                [false, false, true],
-                [false, false, true],
-            ],
-            Self::Two => [
-                [true, true, true],
-                [false, false, true],
-                [true, true, true],
-                [true, false, false],
-                [true, true, true],
-            ],
-            Self::Three => [
-                [true, true, true],
-                [false, false, true],
-                [true, true, true],
-                [false, false, true],
-                [true, true, true],
-            ],
-            Self::Four => [
-                [true, false, true],
-                [true, false, true],
-                [true, true, true],
-                [false, false, true],
-                [false, false, true],
-            ],
-            Self::Five => [
-                [true, true, true],
-                [true, false, false],
-                [true, true, true],
-                [false, false, true],
-                [true, true, true],
-            ],
-            Self::Six => [
-                [true, true, true],
-                [true, false, false],
-                [true, true, true],
-                [true, false, true],
-                [true, true, true],
-            ],
-            Self::Seven => [
-                [true, true, true],
-                [false, false, true],
-                [false, false, true],
-                [false, false, true],
-                [false, false, true],
-            ],
-            Self::Eight => [
-                [true, true, true],
-                [true, false, true],
-                [true, true, true],
-                [true, false, true],
-                [true, true, true],
-            ],
-            Self::Nine => [
-                [true, true, true],
-                [true, false, true],
-                [true, true, true],
-                [false, false, true],
-                [true, true, true],
-            ],
-        }
-    }
 
-    pub fn print(&self) {
-        let map = self.display();
-        for line in map {
-            for cell in line {
-                if cell {
-                    print!("██");
-                } else {
-                    print!("  ");
-                }
+impl BlockChar3By5 for char {
+    fn char_grid(&self) -> [[bool; 3]; 5] {
+        if self.is_numeric() {
+            match self {
+                '0' => [
+                    [true , true , true ],
+                    [true , false, true ],
+                    [true , false, true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                ],
+                '1' => [
+                    [false, false, true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                ],
+                '2' => [
+                    [true , true , true ],
+                    [false, false, true ],
+                    [true , true , true ],
+                    [true , false, false],
+                    [true , true , true ],
+                ],
+                '3' => [
+                    [true , true , true ],
+                    [false, false, true ],
+                    [true , true , true ],
+                    [false, false, true ],
+                    [true , true , true ],
+                ],
+                '4' => [
+                    [true , false, true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                ],
+                '5' => [
+                    [true , true , true ],
+                    [true , false, false],
+                    [true , true , true ],
+                    [false, false, true ],
+                    [true , true , true ],
+                ],
+                '6' => [
+                    [true , true , true ],
+                    [true , false, false],
+                    [true , true , true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                ],
+                '7' => [
+                    [true , true , true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                    [false, false, true ],
+                ],
+                '8' => [
+                    [true , true , true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                ],
+                '9' => [
+                    [true , true , true ],
+                    [true , false, true ],
+                    [true , true , true ],
+                    [false, false, true ],
+                    [true , true , true ],
+                ],
+                _ => [
+                    [true , true , true ],
+                    [true , true , true ],
+                    [true , true , true ],
+                    [true , true , true ],
+                    [true , true , true ],
+                ]
             }
-            println!();
+
+        } else {
+            [
+                [true, true, true],
+                [true, true, true],
+                [true, true, true],
+                [true, true, true],
+                [true, true, true],
+            ]
         }
     }
 }
